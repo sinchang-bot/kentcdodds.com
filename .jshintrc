@@ -1,0 +1,32 @@
+{
+  "unused": "vars",
+  "undef": true,
+  "curly": true,
+  "forin": true,
+  "eqeqeq": true,
+  "immed": true,
+  "freeze": true,
+  "latedef": "nofunc",
+  "newcap": false,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "maxcomplexity": 5,
+  "strict": true,
+  "indent": 2,
+  "maxdepth": 3,
+  "trailing": true,
+
+  "browser": true,
+  "node": true,
+  "globals": {
+    "genie": true,
+
+    "jest": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "expect": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "kentcdodds.github.io",
+  "version": "1.0.0",
+  "description": "The official Kent C. Dodds website",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "geniejs": "^0.4.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-gh-pages": "^0.3.4",
+    "gulp-help": "^1.1.0",
+    "gulp-jest": "^0.2.1",
+    "gulp-jshint": "^1.8.4",
+    "gulp-react": "^1.0.2",
+    "gulp-webpack": "^0.3.0",
+    "jest": "^0.1.37",
+    "jshint-stylish": "^1.0.0",
+    "jsx-loader": "^0.11.2",
+    "livereload": "^0.3.4",
+    "react-tools": "^0.11.2",
+    "rimraf": "^2.2.8",
+    "webpack": "^1.4.4",
+    "yargs": "^1.3.1"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "jest": {
+    "testFileExtensions": [
+      "test.js"
+    ],
+    "testDirectoryName": "src",
+    "scriptPreprocessor": "<rootDir>/src/test/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kentcdodds/kentcdodds.github.io.git"
+  },
+  "keywords": [
+    "kentcdodds"
+  ],
+  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kent.doddsfamily.us)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentcdodds/kentcdodds.github.io/issues"
+  },
+  "homepage": "https://github.com/kentcdodds/kentcdodds.github.io"
+}
