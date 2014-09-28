@@ -2,11 +2,29 @@
 'use strict';
 
 var React = require('react');
+var TwitterTimeline = require('./TwitterTimeline');
+var GitHubStuff = require('./GitHubStuff');
+var Header = require('./Header');
 
 var App = React.createClass({
   render: function() {
     return (
-      <h1>Kent C. Dodds</h1>
+      <div>
+        <Header />
+        <div>
+          Most of the interesting stuff about me happens in two places
+        </div>
+        <div className="row">
+          <div className="col-sm-5 col-md-6">
+            <h2>GitHub</h2>
+            <GitHubStuff />
+          </div>
+          <div className="col-sm-7 col-md-6">
+            <h2>Twitter</h2>
+            <TwitterTimeline />
+          </div>
+        </div>
+      </div>
     );
   }
 });

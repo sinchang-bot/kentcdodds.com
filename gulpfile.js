@@ -10,7 +10,8 @@ require('gulp-help')(gulp);
 
 var packageJson = require('./package.json');
 
-
+var connect = require('connect');
+var serveStatic = require('serve-static');
 var livereload = require('livereload');
 var webpack = require('webpack');
 var argv = require('yargs').argv;
@@ -61,10 +62,28 @@ gulp.task('watch:build', false, function() {
   build(false);
 });
 
-gulp.task('watch', 'Use this for development. Will build, test, and serve the demo automgagically', [
+
+gulp.task('watch:serve:server', false, function(next) {
+  var server = connect();
+  server.use(serveStatic('app'));
+  server.listen(process.env.PORT || 3000, next);
+  console.log('Static fileserver running on localhost:3000');
+});
+
+gulp.task('watch:serve', false, ['watch:serve:server'], function() {
+  var server = livereload.createServer({
+    interval: 300
+  });
+  server.watch(__dirname + '/app');
+  console.log('livereload server running watching: ' + __dirname + '/app');
+});
+
+
+gulp.task('watch', 'Use this for development. Will build, test, and serve the app automgagically', [
   'watch:build',
   'watch:lint',
-  'watch:test'
+  'watch:test',
+  'watch:serve'
 ]);
 
 gulp.task('default', false, ['help']);
@@ -74,8 +93,8 @@ gulp.task('ci', 'Run the tests and build. Use --travis for the travis version of
   'build'
 ]);
 
-// UTILS
 
+// UTILS
 
 function getBuildWebpack(once) {
   return {
