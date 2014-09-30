@@ -15,7 +15,7 @@ var Header = React.createClass({
         { name: 'tweeter', url: 'http://twitter.com/kentcdodds' },
         { name: 'Mormon', url: 'http://www.mormon.org'  }
       ]
-    }
+    };
   },
   render: function() {
     var taglineContents = this.props.taglineItems.map(function(item, index, arry) {

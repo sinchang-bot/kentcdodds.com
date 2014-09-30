@@ -3,7 +3,7 @@
 
 var React = require('react');
 var TwitterTimeline = require('./TwitterTimeline');
-var GitHubStuff = require('./GitHubStuff');
+var GitHubStuff = require('./GitHub/GitHubStuff');
 var Header = require('./Header');
 
 var App = React.createClass({

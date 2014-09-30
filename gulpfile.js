@@ -4,6 +4,9 @@ var gulpWebpack = require('gulp-webpack');
 var react = require('gulp-react');
 var jshint = require('gulp-jshint');
 var jest = require('gulp-jest');
+var stylus = require('gulp-stylus');
+var nib = require('nib');
+var concat = require('gulp-concat');
 
 // hijack task fn and add help
 require('gulp-help')(gulp);
@@ -26,7 +29,7 @@ gulp.task('deploy', 'Deploy site to github page', function () {
 });
 
 gulp.task('lint', 'lint project code (post jsx transformation)', function() {
-  gulp.src('src/**/*')
+  gulp.src(['src/**/*.js', '!./src/GitHub/GitHubCardRenderer.js', '!./src/old-script.js'])
     .pipe(react())
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
@@ -62,6 +65,23 @@ gulp.task('watch:build', false, function() {
   build(false);
 });
 
+function stylusTask() {
+  gulp.src('./src/**/*.styl')
+    .pipe(stylus({
+      use: nib(),
+      compress: true
+    }))
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('./app'));
+}
+
+gulp.task('stylus', 'Compile stylus styles', stylusTask);
+
+gulp.task('watch:stylus', false, function() {
+  gulp.watch('./src/**/*.styl', stylusTask);
+});
+
+
 
 gulp.task('watch:serve:server', false, function(next) {
   var server = connect();
@@ -83,6 +103,7 @@ gulp.task('watch', 'Use this for development. Will build, test, and serve the ap
   'watch:build',
   'watch:lint',
   'watch:test',
+  'watch:stylus',
   'watch:serve'
 ]);
 

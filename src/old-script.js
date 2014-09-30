@@ -1,6 +1,10 @@
 angular.module('kent', ['ga', 'uxGenie']).config(function($locationProvider) {
+  'use strict';
+
   $locationProvider.html5Mode(true);
-}).controller('MainCtrl', function($scope, $location) {
+}).controller('MainCtrl', function($scope, $location, ga) {
+  'use strict';
+
   $scope.lampVisible = false;
   $scope.networks = [];
   function addNetwork(name, summary, magicWord, url, icon) {
@@ -120,5 +124,5 @@ angular.module('kent', ['ga', 'uxGenie']).config(function($locationProvider) {
     if ($scope.showPhone && $event.keyCode === 27) {
       $scope.hidePhone();
     }
-  }
+  };
 });
