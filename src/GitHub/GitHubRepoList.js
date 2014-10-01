@@ -3,7 +3,6 @@
 
 var React = require('react');
 var axios = require('axios');
-var GitHubCardRenderer = require('./GitHubCardRenderer');
 
 var GITHUB_API_URL = 'https://api.github.com';
 
@@ -21,9 +20,6 @@ var GitHubRepoList = React.createClass({
   },
   componentDidMount: function () {
     this.getRepos();
-  },
-  componentDidUpdate: function() {
-    GitHubCardRenderer();
   },
   render: function() {
     var repos = this.state.repos.sort(function (a, b) {

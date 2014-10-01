@@ -32,8 +32,9 @@ var Header = React.createClass({
 
     return (
       <header>
-        <h1>Kent C. Dodds</h1>
-        <p id="tagline">
+        <h1 className="my-name">Kent C. Dodds</h1>
+        <img className="my-photo" src="/photo.png" />
+        <p className="tagline">
           I am a {taglineContents}
         </p>
       </header>

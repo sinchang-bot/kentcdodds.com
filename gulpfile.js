@@ -100,6 +100,10 @@ gulp.task('watch:serve', false, ['watch:serve:server'], function() {
 
 
 gulp.task('watch', 'Use this for development. Will build, test, and serve the app automgagically', [
+  'build',
+  'lint',
+  'test',
+  'stylus',
   'watch:build',
   'watch:lint',
   'watch:test',

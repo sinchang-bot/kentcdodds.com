@@ -30,7 +30,7 @@ var GitHubUserCard = React.createClass({
           </li>
           <li>
             <a href="https://github.com/lepture/followers">
-              <strong>1384</strong>Followers</a>
+              <strong>15</strong>Orgs</a>
           </li>
         </ul>
       </div>
