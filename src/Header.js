@@ -33,7 +33,12 @@ var Header = React.createClass({
     return (
       <header>
         <h1 className="my-name">Kent C. Dodds</h1>
-        <img className="my-photo" src="/photo.png" />
+        <div className="my-photo-container">
+          <img className="my-photo" src="/photo.png" alt="Photo of Kent C. Dodds" />
+          <p className="my-photo-filler">
+            Photo of me appears to not be loading... :-(
+          </p>
+        </div>
         <p className="tagline">
           I am a {taglineContents}
         </p>

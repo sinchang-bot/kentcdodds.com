@@ -4,12 +4,32 @@
 var React = require('react');
 
 var GitHubRepoCard = React.createClass({
+  getDefaultProps: function () {
+    return {
+      repo: {
+        name: 'genie',
+        owner: {
+          login: 'kentcdodds',
+          avatar_url: 'https://avatars.githubusercontent.com/u/1500684?v=2',
+          html_url: 'https://github.com/kentcdodds'
+        },
+        html_url: 'https://github.com/kentcdodds/genie',
+        description: 'Keyboard control for web applications (better than cryptic shortcuts). 3.5K minified & gzipped',
+        fork: false,
+        homepage: 'http://kent.doddsfamily.us/genie',
+        stargazers_count: 205,
+        subscribers_count: 9,
+        language: 'JavaScript'
+      }
+    };
+  },
   render: function() {
+    var repo = this.props.repo;
     return (
       <div className="github-card repo-card">
         <div className="header">
-          <a className="avatar" href="https://github.com/kentcdodds">
-            <img src="https://pbs.twimg.com/media/BytA08sCYAE6BZi.jpg" />
+          <a className="avatar" href={repo.owner.html_url}>
+            <img src={repo.owner.avatar_url} />
           </a>
           <strong className="name">
             <a href="https://github.com/kentcdodds/genie">genie</a>

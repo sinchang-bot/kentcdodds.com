@@ -2,14 +2,28 @@
   text-align center
 
 
-.my-photo
-  margin-bottom 12px
+.my-photo-container
+  position relative
+  text-align center
+  margin 0 auto 12px
+
+.my-photo-container .my-photo-filler
+  position absolute
+  top 0
+  left 0
+  right 0
+  margin-top 40px
+  z-index -1
+
+.my-photo-container .my-photo
   border-radius 8px
 
 @media only screen and (min-width: 768px)
   .my-name
     font-size 100px
-  .my-photo
+  .my-photo-container,
+  .my-photo-container .my-photo
+    height 320px
     width 320px
   .tagline
     font-size 18px
@@ -17,7 +31,9 @@
 @media only screen and (max-width: 767px)
   .my-name
     font-size 80px
-  .my-photo
+  .my-photo-container,
+  .my-photo-container .my-photo
+    height 240px
     width 240px
   .tagline
     font-size 16px
@@ -25,7 +41,9 @@
 @media only screen and (max-width: 512px)
   .my-name
     font-size 40px
-  .my-photo
+  .my-photo-container,
+  .my-photo-container .my-photo
+    height 160px
     width 160px
   .tagline
     font-size 16px
