@@ -1,0 +1,13 @@
+{
+  extends: ["kentcdodds"],
+  rules: {
+    "react/jsx-uses-react": 2,
+  },
+  ecmaFeatures: {
+    experimentalObjectRestSpread: true,
+    jsx: true,
+  },
+  plugins: [
+    "react"
+  ],
+}
