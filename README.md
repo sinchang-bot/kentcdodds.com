@@ -1,8 +1,19 @@
-www
-===
+# [Phenomic](https://github.com/MoOx/phenomic) boilerplate
 
-Kents Homepage
+## Install dependencies
 
+```console
+$ npm install
+```
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kentcdodds/kentcdodds.github.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+## Run development server
 
+```console
+$ npm start
+```
+
+## Build for production
+
+```console
+$ npm run build
+```
