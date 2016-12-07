@@ -1,4 +1,5 @@
 /* eslint max-len:0, max-lines:0 */
+// @flow
 import marked from 'marked'
 import stripIndent from 'strip-indent'
 import moment from 'moment'
@@ -128,14 +129,15 @@ function fixupData(appearance) {
     thing: markdownToHTMLWithNoPTag(appearance.thing),
     date: moment(appearance.date),
     isFuture: moment().isBefore(appearance.date),
-    tags: (appearance.tags || []).map(t => `${t}${tagEmojiMap[t] ? ` ${tagEmojiMap[t]}` : ''}`),
+    // $FlowFixMe because flow is weird.
+    tags: (appearance.tags || []).map(t => `${t}${tagEmojiMap.hasOwnProperty(t) ? ` ${tagEmojiMap[t]}` : ''}`),
     description: markdownToHTMLWithNoPTag(appearance.description || ''),
     duration: appearance.duration ? moment.duration(appearance.duration).humanize() : null,
   })
 }
 
 function sortByMostRecent(a, b) {
-  return a.date.isAfter(b.date) ? -1 : 1
+  return moment(a.date).isAfter(b.date) ? -1 : 1
 }
 
 function markdownToHTML(string) {

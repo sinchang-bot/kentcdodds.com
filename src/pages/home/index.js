@@ -1,3 +1,4 @@
+// @flow
 export default Home
 
 function Home() {
@@ -66,13 +67,15 @@ function Home() {
   )
 }
 
-function listOfThings(things) {
+type LinkThing = {text: string, url: string}
+
+function listOfThings(things: Array<LinkThing | string>) {
   return things.reduce((items, thing, i) => {
-    const {text, url} = thing
-    if (url) {
-      items.push(<a href={url} key={i}>{text}</a>)
-    } else {
+    if (typeof thing === 'string') {
       items.push(thing)
+    } else {
+      const {text, url} = thing
+      items.push(<a href={url} key={i}>{text}</a>)
     }
     const isLast = i === things.length - 1
     if (!isLast) {

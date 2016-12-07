@@ -1,3 +1,4 @@
+// @flow
 import {PropTypes} from 'react'
 import slugify from 'slugify'
 import {merge, select} from 'glamor'

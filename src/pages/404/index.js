@@ -1,3 +1,4 @@
+// @flow
 import InlineScript from '../../components/scripts/inline-script'
 
 export default FourOFour
@@ -30,7 +31,8 @@ function FourOFour() {
 
 function replaceLocationPathname() {
   /* eslint-disable */ // this is run by the browser and not transpiled
-  var anchor = document.getElementById('replace-location-pathname')
+  // $FlowFixMe apparently getElementById returns an `HTMLElement` which doesn't have an `href`
+  var anchor: HTMLAnchorElement = document.getElementById('replace-location-pathname')
   anchor.href = 'https://kentcdodds.github.io' + window.location.pathname
   anchor.textContent = anchor.href
   /* eslint-enable */
