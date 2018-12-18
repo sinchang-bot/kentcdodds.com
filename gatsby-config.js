@@ -16,6 +16,27 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: here('posts'),
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
