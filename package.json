@@ -31,7 +31,7 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "test": "jest --watch",
     "coverage": "jest --coverage",
     "format": "prettier --write \"src/**/*.+(js|css|ts|tsx|html)\""
