@@ -8,8 +8,7 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "types": ["node", "@emotion/core"]
+    "strictNullChecks": true
   },
   "include": ["./src/**/*", "./test/**/*", "./typings/**/*"]
 }
