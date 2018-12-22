@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql: gql, actions }) => {
               id
               frontmatter {
                 title
+                slug
               }
               parent {
                 ... on File {
@@ -39,9 +40,9 @@ exports.createPages = async ({ graphql: gql, actions }) => {
   // Create blog posts pages.
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
-      path: `/${node.parent.name}`,
+      path: `/blog/${node.frontmatter.slug}`,
       component: componentWithMDXScope(
-        path.resolve('./src/components/posts-page-layout.js'),
+        path.resolve('./posts/posts-page-layout.js'),
         node.code.scope,
       ),
       context: { id: node.id },

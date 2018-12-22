@@ -7,7 +7,11 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import { withMDXScope } from 'gatsby-mdx/context'
 
 function PostPageTemplate({ data: { mdx } }) {
-  return <MDXRenderer>{mdx.code.body}</MDXRenderer>
+  return (
+    <div data-testid="post">
+      <MDXRenderer>{mdx.code.body}</MDXRenderer>
+    </div>
+  )
 }
 
 export default withMDXScope(PostPageTemplate)
