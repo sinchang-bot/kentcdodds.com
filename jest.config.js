@@ -1,10 +1,7 @@
+const path = require('path')
+
 module.exports = {
-  ...require('./test/jest-common'),
-  collectCoverageFrom: [
-    '**/src/**/*.+(js|ts|tsx)',
-    '!**/__tests__/**',
-    '!**/node_modules/**',
-  ],
+  collectCoverageFrom: ['**/src/**/*.+(js|ts|tsx)'],
   coverageThreshold: {
     // global: {
     //   statements: 10,
@@ -13,9 +10,22 @@ module.exports = {
     //   lines: 8,
     // },
   },
-  projects: [
-    './test/jest.lint.js',
-    './test/jest.client.js',
-    './test/jest.tsc.config.js',
+  testMatch: ['**/__tests__/**/*.+(js|ts|tsx)'],
+  moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'ts', 'tsx'],
+  transform: {
+    '^.+\\.(t|j)sx?$': require.resolve('./test/jest-process'),
+  },
+  moduleDirectories: [
+    'node_modules',
+    path.join(__dirname, './src'),
+    path.join(__dirname, './test'),
   ],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+    'jest-watch-select-projects',
+  ],
+  testEnvironment: 'jest-environment-jsdom',
+  setupTestFrameworkScriptFile: require.resolve('./test/setup-tests.js'),
+  snapshotSerializers: ['jest-emotion/serializer'],
 }
