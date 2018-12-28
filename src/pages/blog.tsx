@@ -11,11 +11,9 @@ function IndexPage({ data }: { data: { allMdx: AllGatsbyMDX } }) {
       <ul>
         {data.allMdx.edges.map(({ node }) => (
           <li key={node.id}>
-            <Link to={`/blog/${node.parent.name}`}>
+            <Link to={`/blog/${node.frontmatter.slug}`}>
               {node.frontmatter.title}
             </Link>{' '}
-            <span>{node.excerpt}</span>{' '}
-            <Link to={`/blog/${node.parent.name}`}>Read more..</Link>
           </li>
         ))}
       </ul>
@@ -31,12 +29,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-          }
-          excerpt
-          parent {
-            ... on File {
-              name
-            }
+            slug
           }
         }
       }

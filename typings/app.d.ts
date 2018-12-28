@@ -5,6 +5,7 @@ declare global {
     id: string
     frontmatter: {
       title: string
+      slug: string
     }
     excerpt: string
     parent: {

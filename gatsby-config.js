@@ -27,6 +27,7 @@ module.exports = {
               sizeByPixelDensity: true,
             },
           },
+          { resolve: '@weknow/gatsby-remark-twitter' },
         ],
       },
     },
