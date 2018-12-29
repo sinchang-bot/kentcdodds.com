@@ -27,7 +27,7 @@ module.exports = {
               sizeByPixelDensity: true,
             },
           },
-          { resolve: '@weknow/gatsby-remark-twitter' },
+          { resolve: require.resolve('./plugins/remark-youtube-embedder') },
         ],
       },
     },
