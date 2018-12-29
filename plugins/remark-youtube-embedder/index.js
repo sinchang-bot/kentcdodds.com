@@ -1,5 +1,5 @@
 const visit = require(`unist-util-visit`)
-const getYouTubeHTML = require('./get-youtube-iframe-src')
+const getYouTubeHTML = require('./get-youtube-html')
 
 module.exports = ({ markdownAST }) => {
   visit(markdownAST, 'text', node => {

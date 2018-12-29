@@ -11,6 +11,13 @@ module.exports = {
     // },
   },
   testMatch: ['**/__tests__/**/*.+(js|ts|tsx)'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/.cache/',
+    '/coverage/',
+    '/cypress/',
+    '/posts/',
+  ],
   moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'ts', 'tsx'],
   transform: {
     '^.+\\.(t|j)sx?$': require.resolve('./test/jest-process'),
