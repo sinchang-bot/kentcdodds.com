@@ -1,15 +1,26 @@
 const visit = require(`unist-util-visit`)
 const getYouTubeHTML = require('./get-youtube-html')
+const getTwitterHTML = require('./get-twitter-html')
 
-module.exports = ({ markdownAST }) => {
+const transformers = [getYouTubeHTML, getTwitterHTML]
+
+module.exports = async opts => {
+  const { markdownAST } = opts
+  const transformations = []
   visit(markdownAST, 'text', node => {
     const { value } = node
-    const html = getYouTubeHTML(value)
-    if (html) {
-      node.type = `html`
-      node.value = html
-    }
+    transformers.forEach(transformer => {
+      if (transformer.shouldTransform(value)) {
+        transformations.push(async () => {
+          const html = await transformer(value)
+          node.type = `html`
+          node.value = html
+        })
+      }
+    })
   })
+  const promises = transformations.map(t => t())
+  await Promise.all(promises)
 
   return markdownAST
 }

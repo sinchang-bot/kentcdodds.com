@@ -1,14 +1,10 @@
 const { URL } = require('url')
 
-function getYouTubeHTML(string) {
-  const iframeSrc = getYouTubeIFrameSrc(string)
-  if (iframeSrc) {
-    return `<iframe width="560" height="315" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-  }
-  return null
+function shouldTransform(string) {
+  return getUrl(string) !== null
 }
 
-function getYouTubeIFrameSrc(string) {
+function getUrl(string) {
   if (!string.startsWith('http')) {
     string = `https://${string}`
   }
@@ -24,6 +20,19 @@ function getYouTubeIFrameSrc(string) {
   if (!url.host.endsWith('youtube.com') && !url.host.endsWith('youtu.be')) {
     return null
   }
+  return url
+}
+
+function getYouTubeHTML(string) {
+  const iframeSrc = getYouTubeIFrameSrc(string)
+  if (iframeSrc) {
+    return `<iframe width="560" height="315" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  }
+  return null
+}
+
+function getYouTubeIFrameSrc(string) {
+  const url = getUrl(string)
   let id = url.searchParams.get('v')
   if (url.host === 'youtu.be') {
     id = url.pathname.slice(1)
@@ -52,5 +61,6 @@ function getTimeValueInSeconds(timeValue) {
 }
 
 module.exports = getYouTubeHTML
+module.exports.shouldTransform = shouldTransform
 module.exports.getYouTubeIFrameSrc = getYouTubeIFrameSrc
 module.exports.getTimeValueInSeconds = getTimeValueInSeconds

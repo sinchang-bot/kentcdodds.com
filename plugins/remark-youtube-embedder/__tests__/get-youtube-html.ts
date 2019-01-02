@@ -1,5 +1,28 @@
 import cases from 'jest-in-case'
-import { getYouTubeIFrameSrc, getTimeValueInSeconds } from '../get-youtube-html'
+import {
+  getYouTubeIFrameSrc,
+  shouldTransform,
+  getTimeValueInSeconds,
+} from '../get-youtube-html'
+
+cases(
+  'url validation',
+  ({ url, valid }: { url: string; valid: boolean }) => {
+    expect(shouldTransform(url)).toBe(valid)
+  },
+  {
+    nothing: { url: 'nothing', valid: false },
+    'not a url but with youtube in it': {
+      url: 'not a youtube url',
+      valid: false,
+    },
+    'url with youtube': { url: 'https://not-a-youtube-url.com', valid: false },
+    'short url': {
+      url: 'https://youtu.be/dQw4w9WgXcQ',
+      valid: true,
+    },
+  },
+)
 
 type Options = { url: string; iframe: string }
 
@@ -9,12 +32,6 @@ cases(
     expect(getYouTubeIFrameSrc(url)).toBe(iframe)
   },
   {
-    nothing: { url: 'nothing', iframe: null },
-    'not a url but with youtube in it': {
-      url: 'not a youtube url',
-      iframe: null,
-    },
-    'url with youtube': { url: 'https://not-a-youtube-url.com', iframe: null },
     'short url': {
       url: 'https://youtu.be/dQw4w9WgXcQ',
       iframe: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',

@@ -14,7 +14,7 @@
     "emotion-server": "^10.0.5",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
-    "gatsby-mdx": "0.3.1-ci.225",
+    "gatsby-mdx": "^0.3.1-ci.227",
     "gatsby-plugin-emotion": "^3.0.1",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",

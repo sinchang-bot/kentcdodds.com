@@ -6204,10 +6204,10 @@ gatsby-link@^2.0.7:
     "@types/reach__router" "^1.0.0"
     prop-types "^15.6.1"
 
-gatsby-mdx@0.3.1-ci.225:
-  version "0.3.1-ci.225"
-  resolved "https://registry.yarnpkg.com/gatsby-mdx/-/gatsby-mdx-0.3.1-ci.225.tgz#5c990f8baf955fd1c2c703fbb1b0aa177703f909"
-  integrity sha512-/rx1rfi6+Wq5CMYPC8HnspN42NW2r1XMz7cY4lAgtYouUgRtbUUFQ9BqTNdCzQbmt1JYwcI7EbBuBGEQfnjB+w==
+gatsby-mdx@^0.3.1-ci.227:
+  version "0.3.1-ci.227"
+  resolved "https://registry.yarnpkg.com/gatsby-mdx/-/gatsby-mdx-0.3.1-ci.227.tgz#a902d8a2cd18bd82a2f86a95284736e7f1fe5bb9"
+  integrity sha512-a1BhV2DQPX5IoaFNZjBOmr+rotMfKPUuvTKMuxEQfLX23AJhDp5RG6IAwmu4sZDKW5Odv8dmafvBCiHSBqj2zg==
   dependencies:
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
     babel-plugin-gather-exports "^0.0.1"

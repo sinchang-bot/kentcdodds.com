@@ -8,5 +8,5 @@
     "noUnusedParameters": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*", "./test/**/*", "./typings/**/*"]
+  "include": ["./src/**/*", "./posts/**/*", "./test/**/*", "./typings/**/*"]
 }
