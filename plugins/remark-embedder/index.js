@@ -4,8 +4,7 @@ const getTwitterHTML = require('./get-twitter-html')
 
 const transformers = [getYouTubeHTML, getTwitterHTML]
 
-module.exports = async opts => {
-  const { markdownAST } = opts
+module.exports = async ({ markdownAST }) => {
   const transformations = []
   visit(markdownAST, 'text', node => {
     const { value } = node

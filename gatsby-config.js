@@ -27,7 +27,7 @@ module.exports = {
               sizeByPixelDensity: true,
             },
           },
-          { resolve: require.resolve('./plugins/remark-youtube-embedder') },
+          { resolve: require.resolve('./plugins/remark-embedder') },
         ],
       },
     },

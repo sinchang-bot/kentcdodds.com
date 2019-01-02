@@ -5,11 +5,11 @@ function shouldTransform(string) {
 }
 
 function getUrl(string) {
-  if (!string.startsWith('http')) {
-    string = `https://${string}`
-  }
   if (!string.includes('youtu')) {
     return null
+  }
+  if (!string.startsWith('http')) {
+    string = `https://${string}`
   }
   let url
   try {
@@ -25,10 +25,7 @@ function getUrl(string) {
 
 function getYouTubeHTML(string) {
   const iframeSrc = getYouTubeIFrameSrc(string)
-  if (iframeSrc) {
-    return `<iframe width="560" height="315" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-  }
-  return null
+  return `<iframe width="560" height="315" src="${iframeSrc}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
 }
 
 function getYouTubeIFrameSrc(string) {

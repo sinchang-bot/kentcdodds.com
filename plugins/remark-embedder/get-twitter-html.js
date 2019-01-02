@@ -6,11 +6,11 @@ function shouldTransform(string) {
 }
 
 function getUrl(string) {
-  if (!string.startsWith('http')) {
-    string = `https://${string}`
-  }
   if (!string.includes('twitter')) {
     return null
+  }
+  if (!string.startsWith('http')) {
+    string = `https://${string}`
   }
   let url
   try {
