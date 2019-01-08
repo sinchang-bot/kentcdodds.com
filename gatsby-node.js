@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql: gql, actions }) => {
     createPage({
       path: `/blog/${node.frontmatter.slug}`,
       component: componentWithMDXScope(
-        path.resolve('./posts/posts-page-layout.tsx'),
+        path.resolve('./posts/posts-page-layout/index.tsx'),
         node.code.scope,
       ),
       context: { id: node.id },
