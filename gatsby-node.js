@@ -1,27 +1,31 @@
 const path = require('path')
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope')
 
 // this allows prettier to know it's graphql and format it appropriately
 const graphql = String.raw
 
-exports.createPages = async ({ graphql: gql, actions }) => {
-  const { createPage } = actions
+exports.createPages = async ({graphql: gql, actions}) => {
+  const {createPage} = actions
   const result = await gql(
     graphql`
-      {
-        allMdx {
+      query {
+        allMdx(
+          filter: {frontmatter: {published: {ne: false}}}
+          sort: {order: DESC, fields: [frontmatter___date]}
+        ) {
           edges {
             node {
               id
-              frontmatter {
-                title
-                slug
-              }
               parent {
                 ... on File {
                   name
                   sourceInstanceName
                 }
+              }
+              excerpt(pruneLength: 250)
+              frontmatter {
+                title
+                slug
+                date
               }
               code {
                 scope
@@ -38,14 +42,11 @@ exports.createPages = async ({ graphql: gql, actions }) => {
     throw result.errors
   }
   // Create blog posts pages.
-  result.data.allMdx.edges.forEach(({ node }) => {
+  result.data.allMdx.edges.forEach(({node}) => {
     createPage({
       path: `/blog/${node.frontmatter.slug}`,
-      component: componentWithMDXScope(
-        path.resolve('./posts/posts-page-layout/index.tsx'),
-        node.code.scope,
-      ),
-      context: { id: node.id },
+      component: path.resolve(`./src/templates/post.tsx`),
+      context: {id: node.id},
     })
   })
 }

@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import {Link, graphql} from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-function IndexPage({ data }: { data: { allMdx: AllGatsbyMDX } }) {
+function IndexPage({data}: {data: {allMdx: AllGatsbyMDX}}) {
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
       <ul>
-        {data.allMdx.edges.map(({ node }) => (
+        {data.allMdx.edges.map(({node}) => (
           <li key={node.id}>
             <Link to={`/blog/${node.frontmatter.slug}`}>
               {node.frontmatter.title}
@@ -23,7 +23,10 @@ function IndexPage({ data }: { data: { allMdx: AllGatsbyMDX } }) {
 
 export const query = graphql`
   {
-    allMdx {
+    allMdx(
+      filter: {frontmatter: {published: {ne: false}}}
+      sort: {order: DESC, fields: [frontmatter___date]}
+    ) {
       edges {
         node {
           id

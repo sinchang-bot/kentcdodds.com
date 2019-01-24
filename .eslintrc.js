@@ -11,6 +11,17 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/jsx-pascal-case': 'off',
   },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: {
+          resolve: {
+            extensions: ['.js', '.tsx'],
+          },
+        },
+      },
+    },
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],

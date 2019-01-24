@@ -28,7 +28,7 @@ module.exports = {
               sizeByPixelDensity: true,
             },
           },
-          { resolve: require.resolve('./plugins/remark-embedder') },
+          {resolve: require.resolve('./plugins/remark-embedder')},
         ],
       },
     },
@@ -52,8 +52,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Kent C. Dodds Blog',
-        short_name: 'kentcdodds blog',
+        name: 'Kent C. Dodds',
+        short_name: 'kentcdodds',
         start_url: '/',
         background_color: '#223891',
         theme_color: '#223891',
@@ -64,4 +64,4 @@ module.exports = {
   ],
 }
 
-/* eslint camelcase:0 */
+/* eslint babel/camelcase:0 */
