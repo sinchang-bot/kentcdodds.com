@@ -58,5 +58,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-/* eslint react/prop-types:0 */

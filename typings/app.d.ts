@@ -1,5 +1,9 @@
 import '@emotion/core'
 
+// declare module 'gatsby-mdx/*'
+declare module 'gatsby-mdx/mdx-renderer'
+declare module 'gatsby-mdx/context'
+
 declare global {
   type GatsbyMDXNode = {
     id: string
