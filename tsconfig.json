@@ -6,7 +6,11 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "$components/*": ["src/components/*"]
+    }
   },
   "include": ["./src/**/*", "./posts/**/*", "./test/**/*", "./typings/**/*"]
 }

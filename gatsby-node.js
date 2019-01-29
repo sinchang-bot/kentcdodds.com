@@ -51,4 +51,15 @@ exports.createPages = async ({graphql: gql, actions}) => {
   })
 }
 
+// This is a shortcut so MDX can import components without gross relative paths.
+// Example: import { Figure } from '$components';
+exports.onCreateWebpackConfig = ({actions}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      alias: {$components: path.resolve(__dirname, 'src/components')},
+    },
+  })
+}
+
 /* eslint no-console:0 */

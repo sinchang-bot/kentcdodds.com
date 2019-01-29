@@ -6,15 +6,13 @@ tagline:
   and see how that feature works.
 ---
 
-https://www.youtube.com/watch?v=nw-GFMW8LSQ
-
 > Note: [React Hooks](https://reactjs.org/hooks) are currently available in the
 > **alpha** release of `react@16.7.0-alpha.2`.
 
 This is the first example on the https://reactjs.org/hooks documentation:
 
 ```javascript
-import { useState } from 'react'
+import {useState} from 'react'
 
 function Example() {
   // Declare a new state variable, which we'll call "count"

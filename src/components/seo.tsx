@@ -1,95 +1,107 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import {StaticQuery, graphql} from 'gatsby'
+import SchemaOrg from './schema-org'
 
 type Props = {
-  description?: string
-  lang?: string
-  meta?: { name: string; content: string }[]
-  keywords?: string[]
-  title: string
+  isBlogPost?: boolean
+  postData?: {
+    childMarkdownRemark: {
+      frontmatter?: Frontmatter
+    }
+  }
+  frontmatter?: Frontmatter
+  postImage: string
 }
 
 function SEO({
-  description,
-  lang = 'en',
-  meta = [],
-  keywords = [],
-  title,
+  postData = {childMarkdownRemark: {}},
+  frontmatter = postData.childMarkdownRemark.frontmatter,
+  postImage = null,
+  isBlogPost = false,
 }: Props) {
   return (
     <StaticQuery
-      query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
+      query={graphql`
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              canonicalUrl
+              image
+              author {
+                name
+              }
+              organization {
+                name
+                url
+                logo
+              }
+              social {
+                twitter
+                fbAppID
+              }
+            }
+          }
+        }
+      `}
+      render={({site: {siteMetadata}}) => {
+        const seo = frontmatter || siteMetadata
+        const title = seo.title
+        const description = seo.description
+        const image = postImage ? `${seo.canonicalUrl}${postImage}` : seo.image
+        const url = frontmatter
+          ? `${seo.canonicalUrl}/${frontmatter.slug}`
+          : seo.canonicalUrl
+        const datePublished = isBlogPost ? frontmatter.datePublished : false
+
         return (
-          <Helmet
-            htmlAttributes={{
-              lang,
-            }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-            meta={[
-              {
-                name: 'description',
-                content: metaDescription,
-              },
-              {
-                property: 'og:title',
-                content: title,
-              },
-              {
-                property: 'og:description',
-                content: metaDescription,
-              },
-              {
-                property: 'og:type',
-                content: 'website',
-              },
-              {
-                name: 'twitter:card',
-                content: 'summary',
-              },
-              {
-                name: 'twitter:creator',
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: 'twitter:title',
-                content: title,
-              },
-              {
-                name: 'twitter:description',
-                content: metaDescription,
-              },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: 'keywords',
-                      content: keywords.join(', '),
-                    }
-                  : [],
-              )
-              .concat(meta)}
-          />
+          <React.Fragment>
+            <Helmet>
+              {/* General tags */}
+              <title>{title}</title>
+              <meta name="description" content={description} />
+              <meta name="image" content={image} />
+
+              {/* OpenGraph tags */}
+              <meta property="og:url" content={url} />
+              {isBlogPost ? (
+                <meta property="og:type" content="article" />
+              ) : null}
+              <meta property="og:title" content={title} />
+              <meta property="og:description" content={description} />
+              <meta property="og:image" content={image} />
+              <meta property="fb:app_id" content={seo.social.fbAppID} />
+
+              {/* Twitter Card tags */}
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:creator" content={seo.social.twitter} />
+              <meta name="twitter:title" content={title} />
+              <meta name="twitter:description" content={description} />
+              <meta name="twitter:image" content={image} />
+            </Helmet>
+            <SchemaOrg
+              isBlogPost={isBlogPost}
+              url={url}
+              title={title}
+              image={image}
+              description={description}
+              datePublished={datePublished}
+              canonicalUrl={seo.canonicalUrl}
+              author={seo.author}
+              organization={seo.organization}
+              defaultTitle={seo.defaultTitle}
+            />
+          </React.Fragment>
         )
       }}
     />
   )
 }
 
-export default SEO
+SEO.defaultProps = {
+  postImage: null,
+}
 
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-`
+export default SEO
