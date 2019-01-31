@@ -30,6 +30,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "netlify": "npm run build && mv public dist",
     "build": "gatsby build",
     "dev": "gatsby develop",
     "start": "serve --no-clipboard --listen 8899 public",
