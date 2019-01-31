@@ -37,6 +37,7 @@ module.exports = {
   plugins: [
     {resolve: `gatsby-plugin-emotion`},
     'gatsby-plugin-typescript',
+    {resolve: `gatsby-plugin-svgr`},
     {
       resolve: 'gatsby-mdx',
       options: {

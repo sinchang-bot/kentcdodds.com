@@ -1,6 +1,19 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+type SchemaOrgProps = {
+  author?: {name: string}
+  canonicalUrl?: string
+  datePublished?: string
+  defaultTitle?: string
+  description?: string
+  image?: string
+  isBlogPost?: boolean
+  organization?: {url: string; logo: string; name: string}
+  title?: string
+  url?: string
+}
+
 export default React.memo(
   ({
     author,
@@ -13,7 +26,7 @@ export default React.memo(
     organization,
     title,
     url,
-  }) => {
+  }: SchemaOrgProps) => {
     const baseSchema = [
       {
         '@context': 'http://schema.org',

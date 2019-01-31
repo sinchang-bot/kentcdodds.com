@@ -1,3 +1,5 @@
+import 'normalize.css/normalize.css'
+
 function injectTwitterScript() {
   function addJS(jsCode) {
     const s = document.createElement('script')
@@ -24,7 +26,8 @@ function injectTwitterScript() {
 }
 
 let injectedTwitterScript = false
-exports.onRouteUpdate = function onRouteUpdate() {
+
+export function onRouteUpdate() {
   // If there's an embedded tweet, lazy-load the twitter script (if it hasn't
   // already been loaded), and then run the twitter load function.
   // console.log('load tweeter script');

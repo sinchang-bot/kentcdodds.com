@@ -1,13 +1,8 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import {Link} from 'gatsby'
 
-const Header = ({ siteTitle = '' }: { siteTitle?: string }) => (
-  <div
-    css={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
+const Header = ({title = ''}: {title?: string}) => (
+  <div>
     <div
       css={{
         margin: '0 auto',
@@ -15,7 +10,7 @@ const Header = ({ siteTitle = '' }: { siteTitle?: string }) => (
         padding: '1.45rem 1.0875rem',
       }}
     >
-      <h1 css={{ margin: 0 }}>
+      <h1 css={{margin: 0}}>
         <Link
           to="/"
           css={{
@@ -23,7 +18,7 @@ const Header = ({ siteTitle = '' }: { siteTitle?: string }) => (
             textDecoration: 'none',
           }}
         >
-          {siteTitle}
+          {title}
         </Link>
       </h1>
     </div>

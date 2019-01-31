@@ -4,21 +4,25 @@ import {StaticQuery, graphql} from 'gatsby'
 import SchemaOrg from './schema-org'
 
 type Props = {
+  title?: string
   isBlogPost?: boolean
+  keywords?: string[]
   postData?: {
     childMarkdownRemark: {
       frontmatter?: Frontmatter
     }
   }
   frontmatter?: Frontmatter
-  postImage: string
+  postImage?: string
 }
 
 function SEO({
+  title,
   postData = {childMarkdownRemark: {}},
   frontmatter = postData.childMarkdownRemark.frontmatter,
   postImage = null,
   isBlogPost = false,
+  keywords,
 }: Props) {
   return (
     <StaticQuery
@@ -48,13 +52,13 @@ function SEO({
       `}
       render={({site: {siteMetadata}}) => {
         const seo = frontmatter || siteMetadata
-        const title = seo.title
+        title = title || seo.title
         const description = seo.description
         const image = postImage ? `${seo.canonicalUrl}${postImage}` : seo.image
         const url = frontmatter
           ? `${seo.canonicalUrl}/${frontmatter.slug}`
           : seo.canonicalUrl
-        const datePublished = isBlogPost ? frontmatter.datePublished : false
+        const datePublished = isBlogPost ? frontmatter.datePublished : ''
 
         return (
           <React.Fragment>
@@ -62,6 +66,9 @@ function SEO({
               {/* General tags */}
               <title>{title}</title>
               <meta name="description" content={description} />
+              {keywords ? (
+                <meta name="keywords" content={keywords.join(',')} />
+              ) : null}
               <meta name="image" content={image} />
 
               {/* OpenGraph tags */}

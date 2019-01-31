@@ -10,6 +10,7 @@ module.exports = {
   rules: {
     'no-use-before-define': 'off',
     'react/jsx-pascal-case': 'off',
+    'no-console': 'warn',
   },
   settings: {
     'import/resolver': {

@@ -1,15 +1,14 @@
 import React from 'react'
 import {StaticQuery, graphql} from 'gatsby'
-
 import Header from './header'
 import './layout.css'
 
 type Props = {
   children: React.ReactNode | React.ReactNode[]
-  pageContext?: PageContext
+  title?: string
 }
 
-const Layout = ({children, pageContext}: Props) => (
+const Layout = ({children, title}: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -21,13 +20,10 @@ const Layout = ({children, pageContext}: Props) => (
       }
     `}
     render={data => {
-      console.log({pageContext, data})
-      const title = pageContext
-        ? pageContext.frontmatter.title
-        : data.site.siteMetadata.title
+      title = title || data.site.siteMetadata.title
       return (
         <>
-          <Header siteTitle={title} />
+          <Header title={title} />
           <div
             style={{
               margin: '0 auto',
