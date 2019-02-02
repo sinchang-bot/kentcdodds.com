@@ -1,4 +1,5 @@
-const { URL } = require('url')
+const {URL} = require('url')
+// eslint-disable-next-line
 const fetch = require('node-fetch')
 
 function shouldTransform(string) {
