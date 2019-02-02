@@ -22,10 +22,7 @@ function NotFoundPage() {
         </p>
         <p>
           {`If this is the case, then you'll find the page you're looking for here:`}
-          <a
-            href={`https://kentcdodds.github.io${pathname}`}
-            id="replace-location-pathname"
-          >
+          <a href={`https://kentcdodds.github.io${pathname}`}>
             {`https://kentcdodds.github.io${pathname}`}
           </a>
         </p>
