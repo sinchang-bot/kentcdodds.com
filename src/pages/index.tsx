@@ -1,9 +1,33 @@
 import React from 'react'
 import SEO from '$components/seo'
+import {css} from '@emotion/core'
+import styled from '@emotion/styled'
 import {ReactComponent as Twitter} from '../images/svgs/twitter.svg'
 import {ReactComponent as GitHub} from '../images/svgs/github.svg'
+import {ReactComponent as YouTube} from '../images/svgs/youtube.svg'
 
-export default IndexPage
+const LinkBox = styled.div({
+  height: 400,
+  padding: 30,
+  backgroundColor: '#E75248',
+  color: 'white',
+})
+
+function IconLink({
+  href,
+  color,
+  Icon,
+}: {
+  href: string
+  color: string
+  Icon: React.SFC<React.SVGProps<SVGSVGElement>>
+}) {
+  return (
+    <a href={href} css={{color: 'black', ':hover,:focus': {color}}}>
+      <Icon css={{fill: 'currentColor'}} />
+    </a>
+  )
+}
 
 function IndexPage() {
   return (
@@ -11,89 +35,129 @@ function IndexPage() {
       <SEO title="Home" />
       <div
         css={{
-          maxWidth: 1080,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 600px)',
-          gridTemplateAreas: `
-            "....... navbar"
-            "name    photo"
-            "tagline photo"
-            "....... photo"
-            "content content"
-            "cta     cta"
-            "footer  footer"
-          `,
-          gridGap: '20px',
-          backgroundColor: '#fff',
-          color: '#444',
-          '& > div': {
-            border: '1px solid #eee',
-          },
+          maxWidth: 720,
+          margin: 'auto',
         }}
       >
-        <div css={{gridArea: 'navbar'}}>
-          <ul
-            css={{
-              listStyle: 'none',
-              paddingLeft: 0,
-              display: 'grid',
-              gridTemplateColumns: 'fit-content(200px) fit-content(200px)',
-              gridGap: 10,
-              justifyContent: 'end',
-              marginRight: 20,
-            }}
-          >
-            <li>About</li>
-            <li>Blog</li>
-          </ul>
-        </div>
-        <div css={{gridArea: 'name'}}>
-          <h1 css={{fontWeight: 'bold'}}>{`Hi, I'm Kent C. Dodds`}</h1>
-        </div>
-        <div css={{gridArea: 'tagline'}}>
-          {`I help people make the world better through quality software.`}
-        </div>
-        <div css={{gridArea: 'photo'}}>
-          <img
-            src={require('../images/photo-transparent.png')}
-            css={{maxWidth: '100%'}}
-          />
-        </div>
-        <div css={{gridArea: 'content'}}>
-          {`
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus facilisis at sem vel facilisis. Integer nec justo dapibus, faucibus risus eu, ultrices massa. Phasellus enim mi, dictum ut maximus vitae, lacinia et velit. Pellentesque vestibulum dui purus. Pellentesque hendrerit iaculis finibus. Praesent faucibus facilisis dolor eu tempor. Sed maximus tortor sapien, sed commodo diam suscipit aliquam. Vivamus sed luctus orci.
-
-            Cras molestie, urna non lobortis efficitur, ex ipsum dictum nibh, in vestibulum dolor nunc at ex. Sed feugiat velit est, sit amet luctus leo maximus non. Donec dapibus ex eget erat maximus venenatis. Integer posuere ultricies lacus sed fringilla. Mauris sed eleifend ipsum, et luctus magna. Vestibulum quis volutpat tellus, at dictum libero. Duis ac lectus id ligula consequat iaculis. Pellentesque finibus velit vitae ligula imperdiet feugiat. Phasellus eu sem vitae ante eleifend accumsan et a leo. Ut tristique orci venenatis varius imperdiet. Donec id ornare neque. Donec molestie mi sit amet metus vestibulum, nec pulvinar mauris varius. Nam tristique imperdiet felis et ornare. Sed ligula massa, tincidunt in nisl blandit, interdum efficitur ante. Vivamus et turpis dignissim, rutrum mi a, bibendum est. Fusce eu rutrum mauris.
-          `}
-        </div>
-        <div css={{gridArea: 'cta'}}>
-          <Subscribe />
-        </div>
         <div
           css={{
-            gridArea: 'footer',
-            display: 'grid',
-            gridTemplateColumns: '1fr 40px 40px',
+            display: 'flex',
+            flexDirection: 'column',
+            '& > *:not(:first-child)': {
+              marginTop: 25,
+            },
+            '& > *:not(:last-child)': {
+              marginBottom: 25,
+            },
           }}
         >
-          <div>Kent C. Dodds © {new Date().getFullYear()}</div>
-          <div>
-            <a
-              href="https://github.com/kentcdodds"
-              css={{color: 'black', ':hover,:focus': {color: '#181717'}}}
+          <div css={{display: 'flex', justifyContent: 'space-between'}}>
+            <div
+              css={{
+                textTransform: 'uppercase',
+                padding: 20,
+                backgroundColor: '#17A974',
+                color: 'white',
+              }}
             >
-              <GitHub css={{maxWidth: 30, fill: 'currentColor'}} />
-            </a>
+              Home of Kent C. Dodds
+            </div>
+            <div>
+              <ul
+                css={{
+                  listStyle: 'none',
+                  paddingLeft: 0,
+                  display: 'grid',
+                  gridTemplateColumns: 'fit-content(200px) fit-content(200px)',
+                  gridGap: 10,
+                  justifyContent: 'end',
+                }}
+              >
+                <li>About</li>
+                <li>Blog</li>
+              </ul>
+            </div>
           </div>
           <div>
-            <a
-              href="https://twitter.com/kentcdodds"
-              css={{color: 'black', ':hover,:focus': {color: '#1DA1F2'}}}
+            <div
+              css={{
+                display: 'grid',
+                gridTemplateColumns: 'fit-content(1000px) fit-content(400px)',
+                gridGap: 10,
+              }}
             >
-              <Twitter css={{maxWidth: 30, fill: 'currentColor'}} />
-            </a>
+              <div>
+                Building, teaching, and making the world a better place with
+                quality software.
+              </div>
+              <div>
+                <img
+                  src={require('../images/photo-transparent.png')}
+                  css={{maxWidth: '100%'}}
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            {`
+              I'm a world renowned speaker, teacher, and trainer. I'm the
+              creator of TestingJavaScript.com and an instructor on egghead.io
+              and Frontend Masters. I'm also actively involved in the open
+              source community as a maintainer and contributor to hundreds of
+              popular npm packages you probably use every day. I'm happily
+              married and the father of four kids. I'm also working on a fantasy
+              novel! I like my family, code, JavaScript, and React.
+            `}
+          </div>
+          <div
+            css={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px,1fr))',
+              gridGap: 20,
+              justifyContent: 'center',
+            }}
+          >
+            <LinkBox css={{backgroundColor: '#6E31DC'}}>Blog</LinkBox>
+            <LinkBox css={{backgroundColor: '#E75248'}}>Workshops</LinkBox>
+            <LinkBox css={{backgroundColor: '#327CDC'}}>Talks</LinkBox>
+            <LinkBox css={{backgroundColor: '#FFB700'}}>
+              3 Minutes with Kent
+            </LinkBox>
+          </div>
+          <div css={{gridArea: 'cta'}}>
+            <Subscribe />
+          </div>
+          <div
+            css={{
+              gridArea: 'footer',
+              display: 'grid',
+              gridGap: 20,
+              gridTemplateColumns: '1fr 26px 26px 26px',
+              marginBottom: 40,
+            }}
+          >
+            <div>Kent C. Dodds © {new Date().getFullYear()}</div>
+            <div>
+              <IconLink
+                href="https://github.com/kentcdodds"
+                color="#181717"
+                Icon={GitHub}
+              />
+            </div>
+            <div>
+              <IconLink
+                href="https://twitter.com/kentcdodds"
+                color="#1DA1F2"
+                Icon={Twitter}
+              />
+            </div>
+            <div>
+              <IconLink
+                href="https://www.youtube.com/c/kentcdodds-vids"
+                color="#FF0000"
+                Icon={YouTube}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -107,12 +171,67 @@ function Subscribe() {
     console.log(e.target.elements)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="first-name">First Name</label>
-      <input id="first-name" />
-      <label htmlFor="last-name">Last Name</label>
-      <input id="last-name" />
-      <button type="submit">Join</button>
-    </form>
+    <>
+      <div>Join my newsletter</div>
+      <form
+        onSubmit={handleSubmit}
+        css={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 150px',
+          gridGap: 10,
+        }}
+      >
+        <div css={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+          <label htmlFor="first-name">Your first name</label>
+          <input
+            css={{
+              boxSizing: 'border-box',
+              height: '51px',
+              width: '273px',
+              border: '1px solid #E5E5E5',
+              backgroundColor: '#FFFFFF',
+              paddingLeft: 20,
+              paddingRight: 20,
+            }}
+            id="first-name"
+            placeholder="Jane"
+          />
+        </div>
+        <div css={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+          <label htmlFor="email">Your email</label>
+          <input
+            css={{
+              boxSizing: 'border-box',
+              height: '51px',
+              width: '273px',
+              border: '1px solid #E5E5E5',
+              backgroundColor: '#FFFFFF',
+              paddingLeft: 20,
+              paddingRight: 20,
+            }}
+            id="email"
+            placeholder="jane@example.com"
+          />
+        </div>
+        <button
+          type="submit"
+          css={{
+            alignSelf: 'flex-end',
+            backgroundColor: '#17A974',
+            height: 50,
+            paddingLeft: 20,
+            paddingRight: 20,
+            width: '100%',
+            color: 'white',
+          }}
+        >
+          Subscribe
+        </button>
+      </form>
+    </>
   )
 }
+
+export default IndexPage
+
+/* eslint max-lines-per-function:0 */

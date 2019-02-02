@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import '@emotion/core'
 
 // declare module 'gatsby-mdx/*'
@@ -34,3 +36,12 @@ declare global {
 
 declare module 'gatsby-mdx/mdx-renderer'
 declare module 'gatsby-mdx/context'
+
+declare module '*.svg' {
+  import * as React from 'react'
+
+  export const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>
+
+  const src: string
+  export default src
+}
