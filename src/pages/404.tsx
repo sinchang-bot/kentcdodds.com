@@ -4,6 +4,10 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 function NotFoundPage() {
+  const [pathname, setPathname] = React.useState('')
+  React.useEffect(() => {
+    setPathname(window.location.pathname)
+  }, [])
   return (
     <Layout>
       <SEO title="404: Not found" />
@@ -19,10 +23,10 @@ function NotFoundPage() {
         <p>
           {`If this is the case, then you'll find the page you're looking for here:`}
           <a
-            href={`https://kentcdodds.github.io${window.location.pathname}`}
+            href={`https://kentcdodds.github.io${pathname}`}
             id="replace-location-pathname"
           >
-            {`https://kentcdodds.github.io${window.location.pathname}`}
+            {`https://kentcdodds.github.io${pathname}`}
           </a>
         </p>
         <p>
