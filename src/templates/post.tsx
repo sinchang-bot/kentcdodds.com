@@ -3,7 +3,6 @@ import {graphql, Link} from 'gatsby'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import {withMDXScope} from 'gatsby-mdx/context'
 import Layout from '$components/layout'
-import SEO from '$components/seo'
 
 type Props = {
   data: {
@@ -28,9 +27,9 @@ function PostPageTemplate({data: {mdx}}: Props) {
         </div>
         <article>
           <h1>{mdx.frontmatter.title}</h1>
-          {mdx.frontmatter.tagline ? (
+          {mdx.frontmatter.description ? (
             <div>
-              <em>{mdx.frontmatter.tagline}</em>
+              <em>{mdx.frontmatter.description}</em>
             </div>
           ) : null}
           <div css={{textAlign: 'right', marginBottom: 8, fontSize: '0.9em'}}>
@@ -54,7 +53,7 @@ export const pageQuery = graphql`
       id
       frontmatter {
         title
-        tagline
+        description
       }
       code {
         body

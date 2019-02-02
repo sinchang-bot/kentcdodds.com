@@ -1,9 +1,13 @@
 import React from 'react'
 import SEO from '$components/seo'
-import {css} from '@emotion/core'
 import styled from '@emotion/styled'
+
+// TODO: figure out why TypeScript can't resolve these modules...
+// @ts-ignore
 import {ReactComponent as Twitter} from '../images/svgs/twitter.svg'
+// @ts-ignore
 import {ReactComponent as GitHub} from '../images/svgs/github.svg'
+// @ts-ignore
 import {ReactComponent as YouTube} from '../images/svgs/youtube.svg'
 
 const LinkBox = styled.div({
@@ -168,7 +172,7 @@ function IndexPage() {
 function Subscribe() {
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(e.target.elements)
+    console.log((e.target as HTMLFormElement).elements)
   }
   return (
     <>

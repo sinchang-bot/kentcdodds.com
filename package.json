@@ -47,7 +47,7 @@
     "cy:run": "cypress run",
     "cy:dev": "cypress open",
     "setup": "yarn && yarn validate",
-    "validate": "yarn build && concurrently --kill-others-on-fail --prefix [{name}] --names test:e2e,lint,test,typecheck --prefix-colors bgBlue.bold.reset,bgGreen.bold.reset,bgMagenta.bold.reset,bgCyan.bold.reset \"npm run test:e2e:ci --silent\" \"npm run lint --silent\" \"npm run test:coverage --silent\" \"npm run typecheck --silent\"",
+    "validate": "yarn build && concurrently --kill-others-on-fail --prefix [{name}] --names lint,test,typecheck --prefix-colors bgBlue.bold.reset,bgGreen.bold.reset,bgMagenta.bold.reset,bgCyan.bold.reset \"npm run lint --silent\" \"npm run test:coverage --silent\" \"npm run typecheck --silent\"",
     "format": "prettier --write \"src/**/*.+(js|css|ts|tsx|html)\""
   },
   "devDependencies": {
