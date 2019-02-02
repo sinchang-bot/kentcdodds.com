@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
@@ -27,7 +27,7 @@ function NotFoundPage() {
           </a>
         </p>
         <p>
-          Otherwise, <a href="/">go to my homepage</a>.
+          Otherwise, <Link to="/">go to my homepage</Link>.
         </p>
       </div>
     </Layout>
