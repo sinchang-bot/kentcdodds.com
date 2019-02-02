@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "netlify": "npm run validate && mv public dist",
+    "netlify": "yarn setup && mv public dist",
     "build": "gatsby build",
     "dev": "gatsby develop",
     "start": "serve --no-clipboard --listen 8899 public",
@@ -40,7 +40,7 @@
     "test:coverage": "jest --coverage",
     "typecheck": "tsc --build ./tsconfig.json cypress/tsconfig.json",
     "test:e2e": "is-ci \"test:e2e:ci\" \"test:e2e:dev\"",
-    "pretest:e2e:ci": "npm run build",
+    "pretest:e2e:ci": "yarn build",
     "test:e2e:ci": "echo this does not work yet...",
     "test:e2e:ci:future": "cross-env CYPRESS_BASE_URL=http://localhost:8899 start-server-and-test start http://localhost:8899 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:8000 cy:dev",
